@@ -8,6 +8,7 @@ import java.util.List;
 
 import model.ExpenseTrackerModel;
 import model.Transaction;
+import model.TransactionFilter;
 public class ExpenseTrackerController {
   
   private ExpenseTrackerModel model;
@@ -43,6 +44,21 @@ public class ExpenseTrackerController {
     view.getTableModel().addRow(new Object[]{t.getAmount(), t.getCategory(), t.getTimestamp()});
     refresh();
     return true;
+  }
+  public void applyFilter(TransactionFilter filter) {
+    List<Transaction> transactions = model.getTransactions();
+    List<Transaction> filteredTransactions = filter.filter(transactions);
+    
+    // Highlight the matching transactions
+    for (Transaction transaction : transactions) {
+      if (filteredTransactions.contains(transaction)) {
+        transaction.setHighlighted(true);
+      } else {
+        transaction.setHighlighted(false);
+      }
+    }
+    
+    refresh();
   }
   
   // Other controller methods
