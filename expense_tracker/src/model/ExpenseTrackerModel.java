@@ -20,7 +20,7 @@ public class ExpenseTrackerModel {
   }
 
   public List<Transaction> getTransactions() {
-    return transactions;
+    return Collections.unmodifiableList(transactions);
   }
 
 }
