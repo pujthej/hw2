@@ -2,10 +2,10 @@ package model;
 
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.Collections;
 public class ExpenseTrackerModel {
 
-  public List<Transaction> transactions;
+  private List<Transaction> transactions;
 
   public ExpenseTrackerModel() {
     transactions = new ArrayList<>(); 
