@@ -1,7 +1,6 @@
 package model;
-
-import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class CategoryFilter implements TransactionFilter {
     private String category;
@@ -12,15 +11,12 @@ public class CategoryFilter implements TransactionFilter {
 
     @Override
     public List<Transaction> filter(List<Transaction> transactions) {
-        List<Transaction> filteredTransactions = new ArrayList<>();
 
-        for (Transaction transaction : transactions) {
-            if (transaction.getCategory().equalsIgnoreCase(category)) {
-                filteredTransactions.add(transaction);
-                transaction.setHighlighted(true);
-            }
-        }
-
+        System.out.println("Total transactions before filtering: " + transactions.size());
+        List<Transaction> filteredTransactions = transactions.stream()
+                .filter(transaction -> transaction.getCategory().equalsIgnoreCase(category))
+                .collect(Collectors.toList());
+        System.out.println("Total transactions after filtering: " + filteredTransactions.size());
         return filteredTransactions;
     }
 }
