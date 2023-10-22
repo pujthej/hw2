@@ -169,18 +169,18 @@ public class ExpenseTrackerView extends JFrame {
     transactionsTable.setDefaultRenderer(Object.class, new DefaultTableCellRenderer() {
       @Override
       public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
-        Component c = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
+        Component comp = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
         Transaction currentTransaction = getRowTransaction(row);
         boolean toHighlight = filteredTransactions.contains(currentTransaction);
 
         if (toHighlight) {
-          c.setBackground(new Color(173, 255, 168));
+          comp.setBackground(new Color(173, 255, 168));
         } else {
-          c.setBackground(table.getBackground());
+          comp.setBackground(table.getBackground());
         }
 
-        return c;
+        return comp;
       }
     });
     transactionsTable.repaint();
